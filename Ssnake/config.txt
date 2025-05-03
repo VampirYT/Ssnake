@@ -1,0 +1,8 @@
+Money=5
+Lose=3
+Score=7
+Wins=9
+SkinCount=3
+Skin0=Tiger
+Skin1=Snake
+Skin2=Rainbow
