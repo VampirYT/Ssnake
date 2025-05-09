@@ -72,11 +72,13 @@ void Map(int& xe, int& ye, int& xh, int& yh,char& move, bool& dead, int& score,v
 		score++;
 		xst.push_back(xh);
 		yst.push_back(yh);
-		xe = rand() % x + 4, ye = rand() % y + 4;
+		xe = rand() % (x - 2 * 4) + 4;
+		ye = rand() % (y - 2 * 4) + 4;
 	}
 	if (xh == xb && yh == yb)
 	{
-		xb = rand() % x + 4, yb = rand() % y + 4;
+		xb = rand() % (x - 2 * 4) + 4;
+		yb = rand() % (x - 2 * 4) + 4;
 		boost = true;
 		boosts = false;
 	}

@@ -7,32 +7,32 @@ void Move(char& move)
 	{
 		if (_kbhit())
 		{
-			char ch = _getch();
-			if (ch == 'w')
-			{
-				move = 'u';
-				break;
-			}
-			else if (ch == 's')
-			{
-				move = 'd';
-				break;
-			}
-			else if (ch == 'd')
-			{
-				move = 'r';
-				break;
-			}
-			else if (ch == 'a')
-			{
-				move = 'l';
-				break;
-			}
-			else if (ch == '`')
-			{
-				Console();
-				break;
-			}
+			wchar_t ch = _getwch();
+            if (ch == L'w' || ch == L'ö')
+            {
+                move = 'u';
+                break;
+            }
+            else if (ch == L's' || ch == L'û' || ch == L'³')
+            {
+                move = 'd';
+                break;
+            }
+            else if (ch == L'd' || ch == L'â')
+            {
+                move = 'r';
+                break;
+            }
+            else if (ch == L'a' || ch == L'ô')
+            {
+                move = 'l';
+                break;
+            }
+            else if (ch == L'`')
+            {
+                Console();
+                break;
+            }
 		}
 		Sleep(10);
 		Time += 1;
