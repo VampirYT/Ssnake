@@ -8,8 +8,9 @@ void Game()
 	int score = 0;
 	vector<int>  xst, yst;
 	int xh = x / 2, yh = y / 2;
-	int xe = rand() % x + 4, ye = rand() % y + 4;
-	int kd = 0, xb = rand() % x + 4, yb = rand() % y + 4;
+	int xe = rand() % (x - 2 * 4) + 4;
+	int ye = rand() % (y - 2 * 4) + 4; 
+	int kd = 0, xb = rand() % (x - 2 * 4) + 4, yb = rand() % (y - 2 * 4) + 4;
 	while (!dead)
 	{
 		Map(xe, ye, xh, yh, move, dead, score, xst, yst, kd, boost, xb, yb, boosts);
