@@ -1,7 +1,8 @@
 #include "Header.h"
 
-void Move(char& move)
+void Move(char& move,Config& c)
 {
+    _setmode(_fileno(stdin), _O_U16TEXT);
 	int Time = 0;
 	while (Time < 16)
 	{
@@ -30,7 +31,8 @@ void Move(char& move)
             }
             else if (ch == L'`')
             {
-                Console();
+                system("cls");
+                Console(c);
                 break;
             }
 		}
