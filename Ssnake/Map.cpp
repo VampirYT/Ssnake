@@ -1,125 +1,125 @@
 #include "Header.h"
 
-void Map(int& xe, int& ye, int& xh, int& yh,char& move, bool& dead, int& score,vector<int>& xst, vector<int>&yst,int& kd,bool& boost,int& xb,int&yb,bool& boosts)
+void Map(game& g,Config& c)
 {
-	if (kd >= kdb)
+	if (g.kd >= kdb)
 	{
-		boost = false;
+		g.boost = false;
 	}
-	if (!xst.empty()) {
-		for (int i = xst.size() - 1; i > 0; i--) {
-			xst[i] = xst[i - 1];
-			yst[i] = yst[i - 1];
+	if (!g.xst.empty()) {
+		for (int i = g.xst.size() - 1; i > 0; i--) {
+			g.xst[i] = g.xst[i - 1];
+			g.yst[i] = g.yst[i - 1];
 		}
-		xst[0] = xh;
-		yst[0] = yh;
+		g.xst[0] = g.xh;
+		g.yst[0] = g.yh;
 	}
-	if (move == 'u')
+	if (g.move == 'u')
 	{
-		yh -= 1;
+		g.yh -= 1;
 	}
-	else if (move == 'd')
+	else if (g.move == 'd')
 	{
-		yh += 1;
+		g.yh += 1;
 	}
-	else if (move == 'l')
+	else if (g.move == 'l')
 	{
-		xh -= 1;
+		g.xh -= 1;
 	}
-	else if (move == 'r')
+	else if (g.move == 'r')
 	{
-		xh += 1;
+		g.xh += 1;
 	}
-	if ((yh >= y + 1 || yh <= 0) || (xh >= x + 1 || xh <= 0))
+	if ((g.yh >= y + 1 || g.yh <= 0) || (g.xh >= x + 1 || g.xh <= 0))
 	{
-		if (!boost)
+		if (!g.boost)
 		{
-			dead = true;
+			g.dead = true;
 		}
-		else if(boost)
+		else if(g.boost)
 		{
-			if (yh >= y + 1)
+			if (g.yh >= y + 1)
 			{
-				yh -= y;
+				g.yh -= y;
 			}
-			else if (yh <= 0)
+			else if (g.yh <= 0)
 			{
-				yh += y;
+				g.yh += y;
 			}
-			if (xh >= x + 1)
+			if (g.xh >= x + 1)
 			{
-				xh -= x;
+				g.xh -= x;
 			}
-			else if (xh <= 0)
+			else if (g.xh <= 0)
 			{
-				xh += x;
+				g.xh += x;
 			}
 		}
 	}
-	if(!boost)
+	if(!g.boost)
 	{
-		for (int i = xst.size(); i--;)
+		for (int i = g.xst.size(); i--;)
 		{
-			if (xh == xst[i] && yh == yst[i])
+			if (g.xh == g.xst[i] && g.yh == g.yst[i])
 			{
-				dead = true;
+				g.dead = true;
 				break;
 			}
 		}
 	}
-	if (xh == xe && yh == ye)
+	if (g.xh == g.xe && g.yh == g.ye)
 	{
-		score++;
-		xst.push_back(xh);
-		yst.push_back(yh);
-		xe = rand() % (x - 2 * 4) + 4;
-		ye = rand() % (y - 2 * 4) + 4;
+		g.score++;
+		g.xst.push_back(g.xh);
+		g.yst.push_back(g.yh);
+		g.xe = rand() % (x - 2 * 4) + 4;
+		g.ye = rand() % (y - 2 * 4) + 4;
 	}
-	if (xh == xb && yh == yb)
+	if (g.xh == g.xb && g.yh == g.yb)
 	{
-		xb = rand() % (x - 2 * 4) + 4;
-		yb = rand() % (x - 2 * 4) + 4;
-		boost = true;
-		boosts = false;
+		g.xb = rand() % (x - 2 * 4) + 4;
+		g.yb = rand() % (x - 2 * 4) + 4;
+		g.boost = true;
+		g.boosts = false;
 	}
 	for (int i = 0; i < y + 2; i++)
 	{
 		for (int j = 0; j < x + 2; j++)
 		{
 			bool printed = false;
-			if (j == xh && i == yh)
+			if (j == g.xh && i == g.yh)
 			{
 				LightGreen();
 				cout << "8";
 				printed = true;
 			}
-			else if (j == xe && i == ye)
+			else if (j == g.xe && i == g.ye)
 			{
 				Yellow();
 				cout << "Y";
 				printed = true;
 			}
-			else if (kd >= kdbs)
+			else if (g.kd >= kdbs)
 			{
-				boosts = true;
-				kd = 0;
+				g.boosts = true;
+				g.kd = 0;
 			}
-			if (i == yb && j == xb && boosts)
+			if (i == g.yb && j == g.xb && g.boosts)
 			{
 				Blue();
 				cout << "B";
 				printed = true;
 			}
-			for (int k = 0; k < xst.size(); k++)
+			for (int k = 0; k < g.xst.size(); k++)
 			{
-				if (i == yst[k] && j == xst[k])
+				if (i == g.yst[k] && j == g.xst[k])
 				{
-					if(k==xst.size()-1)
+					if(k== g.xst.size()-1)
 					{
 						Red();
 						cout << "0";
 					}
-					else if(k<xst.size())
+					else if(k< g.xst.size())
 					{
 						DarkGreen();
 						cout << "0";
@@ -144,6 +144,6 @@ void Map(int& xe, int& ye, int& xh, int& yh,char& move, bool& dead, int& score,v
 		}
 		cout << endl;
 	}
-	kd += 160;
-	Move(move);
+	g.kd += 160;
+	Move(g.move,c);
 }

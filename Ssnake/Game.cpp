@@ -1,23 +1,14 @@
 #include "Header.h"
 
-
-void Game()
+void Game(game& g, Config& c)
 {
-	char move;
-	bool dead = false, boost = false, boosts = true;
-	int score = 0;
-	vector<int>  xst, yst;
-	int xh = x / 2, yh = y / 2;
-	int xe = rand() % (x - 2 * 4) + 4;
-	int ye = rand() % (y - 2 * 4) + 4; 
-	int kd = 0, xb = rand() % (x - 2 * 4) + 4, yb = rand() % (y - 2 * 4) + 4;
-	while (!dead)
+	while (!g.dead)
 	{
-		Map(xe, ye, xh, yh, move, dead, score, xst, yst, kd, boost, xb, yb, boosts);
+		Map(g,c);
 		system("cls");
 	}
 	Blue();
-	cout << "Ur score - " << score;
+	cout << "Ur score - " << g.score;
 	exit(0);
 }
 
@@ -57,65 +48,33 @@ void GameStart()
 	}
 }
 
-
-
-
-
-//							Im progress
-
-
-
-
-
-//void Next()
-//{
-//	Blue();
-//	system("cls");
-//	STab();
-//	if (game.Language == "ua")
-//		cout << "Натисніть пробіл, щоб продовжити" << endl;
-//	else if (game.Language == "en")
-//		cout << "Press SpaceBar to continue" << endl;
-//	while (true)
-//	{
-//		if (_kbhit())
-//		{
-//			char ch = _getch();
-//			if (ch == ' ')
-//			{
-//				system("cls");
-//				Game();
-//			}
-//		}
-//	}
-//}
-// 
-//void language(Settings& game, ConsoleCommand& command, login& Login)
-//{
-//	system("cls");
-//	Tab(10, 47);
-//	cout << "Choose a language" << endl;
-//	Tab(1, 47);
-//	cout << "Press \"1\" to UA";
-//	Tab(1, 47);
-//	cout << "Press \"2\" to EN";
-//	while (true)
-//	{
-//		if (_kbhit())
-//		{
-//			char ch = _getch();
-//			if (ch == '1')
-//			{
-//				game.Language = "ua";
-//				Next(game, command, Login);
-//				break;
-//			}
-//			else if (ch == '2')
-//			{
-//				game.Language = "en";
-//				Next(game, command, Login);
-//				break;
-//			}
-//		}
-//	}
-//}
+void Language(Config& c)
+{
+	Tab(10, 47);
+	cout << "Choose a language" << endl;
+	Tab(1, 47);
+	cout << "Press \"1\" to UA";
+	Tab(1, 47);
+	cout << "Press \"2\" to EN";
+	while (true)
+	{
+		if (_kbhit())
+		{
+			char ch = _getch();
+			if (ch == '1')
+			{
+				c.language = "ua";
+				system("cls"); 
+				Menu();
+				break;
+			}
+			else if (ch == '2')
+			{
+				c.language = "en";
+				system("cls");
+				Menu();
+				break;
+			}
+		}
+	}
+}

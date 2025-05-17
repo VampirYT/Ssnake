@@ -3,6 +3,8 @@
 void Menu()
 {
 	Config c;
+	game g;
+	skins s;
 	Tab(0, 6);
 	cout << "Menu: ";
 	Tab(2, 4);
@@ -10,8 +12,14 @@ void Menu()
 	Tab(2, 4);
 	cout << "2. Shop";
 	Tab(2, 4);
-	cout << "3. Statistic";
-	ReadConfig(c);
+	cout << "3. Inventory";
+	Tab(2, 4);
+	cout << "4. Language";
+	Tab(2, 4);
+	cout << "5. Statistic";
+	Tab(2, 4);
+	cout << "ESC. Exit";
+	ReadConfig(c,s);
 	while (true)
 	{
 		if (_kbhit())
@@ -20,18 +28,78 @@ void Menu()
 			if (ch == '1')
 			{
 				system("cls");
-				Game();
+				Game(g,c);
+				break;
 			}
 			else if (ch == '2')
 			{
-				//Shop();
-			}
-			else if (ch == '3')
+				system("cls");
+				Shop(c,g,s);
+				break;
+			}else if (ch == '3')
 			{
 				system("cls");
-				Statistic(c);
+				Inventory(c, g);
+				break;
+			}
+			else if (ch == '4')
+			{
+				system("cls");
+				Language(c);
+				break;
+			}
+			else if (ch == '5')
+			{
+				system("cls");
+				Statistic(c,s);
+				break;
+			}
+			else if (ch == VK_ESCAPE)
+			{
+				system("cls");
+				exit(0);
+				break;
+			}
+			else if (ch == '`')
+			{
+				system("cls");
+				Console(c);
+				break;
 			}
 			else
+			{
+				system("cls");
+				Menu();
+				break;
+			}
+		}
+	}
+}
+
+void Inventory(Config&c, game& g)
+{
+	int index = 1;
+	Tab(0, 6);
+	cout << "Inventory: ";
+	for (int i = 0; i < c.Skins.size(); i++)
+	{
+		Tab(2, 4);
+		cout << index << "." << c.Skins.at(i);
+		index++;
+	}
+	while (true)
+	{
+		if (_kbhit())
+		{
+			char ch = _getch();
+			int key = ch - '0';
+			int index = key - 1;
+			if (ch == VK_ESCAPE)
+			{
+				system("cls");
+				Menu();
+			}
+			else if (key >= 1 && key <= c.Skins.size())
 			{
 
 			}
@@ -39,107 +107,124 @@ void Menu()
 	}
 }
 
-/*void Shop()
+void Shop(Config& c, game& g,skins& s)
 {
+	Tab(0, 6);
+	cout << "Shop: ";
+	Tab(2, 4);
+	cout << "Ur balance: " << c.money;
+	int index = 1;
+	for(int i=0; i < s.Skins.size(); i++)
+	{
+		Tab(2, 4);
+		if(s.AvaibleToBuy.at(i))
+		{
+			cout << index << "." << s.Skins.at(i) << " price - " << s.Price.at(i);
+		}
+		else
+		{
+			cout << index << "." << s.Skins.at(i) << " you already have this skin";
+		}
+		index++;
+	}
+	Tab(2, 4);
+	cout << "ESC. Exit";
+	while (true)
+	{
+		if (_kbhit())
+		{
+			char ch = _getch();
+			int key = ch - '0';
+			int index = key - 1;
+			if (key >= 1 && key <= s.Skins.size())
+			{
+				if(s.AvaibleToBuy.at(index))
+				{
+					if (c.money >= s.Price.at(index))
+					{
+						system("cls");
+						Tab(2, 4);
+						cout << "Are yous sure to buy " << s.Skins.at(index) << " for " << s.Price.at(index) << "?";
+						Tab(2, 4);
+						cout << "1.Yes(spend " << s.Price.at(index) << " money)";
+						Tab(2, 4);
+						cout << "1.No";
+						while(true)
+						{
+							if (_kbhit())
+							{
+								char ch = _getch();
+								if (ch == '1')
+								{
+									c.money -= s.Price.at(index);
+									c.Skins.push_back(s.Skins.at(index));
+									s.AvaibleToBuy.at(index) = false;
+									WriteConfig(c);
+									system("cls");
+									cout << "You spend " << s.Price.at(index) << " money for " << s.Skins.at(index);
+									Sleep(3000);
+									system("cls");
+									Shop(c, g, s);
+								}
+								else if (ch == '2')
+								{
+									system("cls");
+									Tab(2, 4);
+									cout << "You turn back to shop";
+									Sleep(3000);
+									system("cls");
+									Shop(c, g, s);
+								}
+							}
+						}
+					}
+					else
+					{
+						system("cls");
+						Tab(2, 4);
+						cout << "You don't have money for this purchase";
+						Sleep(3000);
+						system("cls");
+						Shop(c, g, s);
+					}
+				}
+				else
+				{
+					Tab(2, 4);
+					cout << "Skin not avaible to buy";
+					Sleep(3000);
+					system("cls");
+					Shop(c, g, s);
+				}
+			}
+			else if (ch == VK_ESCAPE)
+			{
+				system("cls");
+				Menu();
+			}
+		}
+	}
+}
 
-
-}*/
-
-void Statistic(Config& c)
+void Statistic(Config& c,skins& s)
 {
-	string temp;
+	ReadConfig(c, s);
 	cout << "Wins -" << c.Wins << endl;
 	cout << "Lose -" << c.Lose << endl;
 	cout << "Money -" << c.money << endl;
 	cout << "Score -" << c.score << endl;
-	cout << "Skincount - " << c.skincount << endl;
-	for(int i = 0; i < c.skincount;i++)
+	cout << "Skincount - " << c.Skins.size() << endl;
+	cout << "ESC.Exit" << endl;
+	while (true)
 	{
-		cout << "Skin" << i << " - " << c.Skins[i] << endl;
-	}
-}
-
-void ReadConfig(Config& c)
-{
-	c.Skins.clear();
-	ifstream Config("config.txt");
-	if (!Config.is_open())
-	{
-		Red();
-		cout << "FAILED OPEN CONFIG!\n";
-		cout << "ALL SAVE DATES LOST!";
-		WriteConfig(c);
-	}
-	else
-	{
-		string line,key,count;
-		int Count,i=0;
-		while (getline(Config, line))
+		if (_kbhit())
 		{
-			size_t pos = line.find('=');
-			if (pos != string::npos)
+			char ch = _getch();
+			if (ch == VK_ESCAPE)
 			{
-				key = line.substr(0, pos);
-				if (key == "Money")
-				{
-					count = line.substr(pos + 1);
-					Count = stoi(count);
-					c.money = Count;
-				}
-				else if (key == "Lose")
-				{
-					count = line.substr(pos + 1);
-					Count = stoi(count);
-					c.Lose = Count;
-				}
-				else if (key == "Score")
-				{
-					count = line.substr(pos + 1);
-					Count = stoi(count);
-					c.score = Count;
-				}
-				else if (key == "Wins")
-				{
-					count = line.substr(pos + 1);
-					Count = stoi(count);
-					c.Wins = Count;
-				}
-				else if (key == "SkinCount")
-				{
-					count = line.substr(pos + 1);
-					Count = stoi(count); 
-					c.skincount = Count;
-				}
-				else if(key == ("Skin"+ to_string(i)))
-				{
-					if (i < c.skincount)
-					{
-						c.Skins.push_back(line.substr(pos + 1));
-						i++;
-					}
-				}
+				system("cls");
+				Menu();
 			}
 		}
-	}
-}
-
-void WriteConfig(Config& c)
-{
-	ofstream ConfigFile("config.txt");
-	if (!ConfigFile.is_open())
-	{
-		Red();
-		cout << "FAILED TO WRITE CONFIG!\n";
-	}
-
-	ConfigFile << "Money=" << c.money << endl;
-	ConfigFile << "Lose=" << c.Lose << endl;
-	ConfigFile << "Score=" << c.score << endl;
-	ConfigFile << "Wins=" << c.Wins << endl;
-	ConfigFile << "SkinCount=" << c.skincount << endl;
-
-	for (int i = 0; i < c.Skins.size(); ++i)
-	{
-		ConfigFile << "Skin" << i << "=" << c.Skins[i] << endl;
 	}
 }

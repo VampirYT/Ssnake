@@ -1,26 +1,68 @@
 #include "Header.h"
 
-void Console()
+void Console(Config& c)
 {
 	LightGreen();
-	system("cls");
 	cout << "It's a developer console here you can print some admin command if you want return to game press \"ESC\""
 		<< endl << "For take all commands list write \"help\"" << endl;
 	string Command;
 	while (true)
 	{
 		cout << "BlackJack/User:";
-		cin >> Command;
-		if (Command == "exit")
+		getline(cin,Command);
+		if (Command == "exit" || Command == "Exit")
 		{
 			system("cls");
 			exit(0);
 		}
-		else if (Command == "help")
+		else if (Command == "clear" || Command == "Clear" || Command == "cls")
+		{
+			system("cls");
+		}
+		else if (Command == "help" || Command == "Help")
 		{
 			Help();
 		}
-		else if (Command == "Start")
+		else if (Command == "SetMoney" || Command == "Setmoney" || Command == "setmoney")
+		{
+			cout << "Enter how much money you want set" << endl;
+			cin >> c.money;
+			WriteConfig(c);
+			cout << "Money set to " << c.money;
+		}
+		else if (Command == "List" || Command == "list")
+		{
+			int index = 1;
+			cout << "List: " << endl;
+			cout << "Language - " << c.language << endl;
+			cout << "Wins - " << c.Wins << endl;
+			cout << "Loses - " << c.Lose << endl;
+			cout << "Money - " << c.money << endl;
+			cout << "Score - " << c.score << endl;
+			cout << "Skins - " << c.Skins.size() << endl;
+			for (int i = 0; i < c.Skins.size(); i++)
+			{
+				cout << index << ".Skin - " << c.Skins.at(i) << endl;
+				index++;
+			}
+		}
+		else if (Command == "Delete skin" || Command == "delete skin")
+		{
+			int index;
+			cout << "Enter skin position" << endl;
+			cin >> index;
+			index--;
+			if (index >= 0 && index < c.Skins.size())
+			{
+				cout << c.Skins.at(index) << " deleted";
+				c.Skins.erase(c.Skins.begin() + index);
+			}
+			else 
+			{
+				cout << "Error: invalid index" << endl;
+			}
+		}
+		else if (Command == "Start" || Command == "start")
 		{
 			int j = 5;
 			for (int i = 0; i < 5; i++)
@@ -34,7 +76,7 @@ void Console()
 			system("cls");
 			GameStart();
 		}
-		else if (Command == "GitHub")
+		else if (Command == "GitHub" || Command == "github")
 			cout << "Avtor GitHub - https://github.com/VampirYT/BlackJack-CPP-" << endl;
 		else
 		{
@@ -44,43 +86,49 @@ void Console()
 		}
 	}
 }
-	void Help()
-	{
-		system("cls");
-		cout << "Command list: ";
-		CommandInfo("exit - close the game");
-		CommandInfo("help - this commands list");
-		CommandInfo("Start - start the game");
-		CommandInfo("GitHub - take link to avtor GitHub");
-	}
-	void CommandInfo(string text)
-	{
-		Tab(1, 1);
-		cout << text << endl;
-	}
 
-	void Tab(int rows, int column)
+void Help()
+{
+	system("cls");
+	cout << "Command list: ";
+	CommandInfo("exit - close the game");
+	CommandInfo("help - this commands list");
+	CommandInfo("Start - start the game");
+	CommandInfo("GitHub - take link to avtor GitHub");
+	CommandInfo("SetMoney - enter how many money you want");
+	CommandInfo("List - show your statistic");
+	CommandInfo("Delete skin - delete skin on position");
+}
+
+void CommandInfo(string text)
+{
+	Tab(1, 1);
+	cout << text << endl;
+}
+
+void Tab(int rows, int column)
+{
+	for (int i = 0; i <= rows; i++)
 	{
-		for (int i = 0; i <= rows; i++)
-		{
-			if (i < rows)
-				cout << " " << endl;
-			if (i == rows)
-				cout << " ";
-		}
-		for (int j = 0; j <= column; j++)
-		{
-			cout << " ";
-		}
-	}
-	void STab()
-	{
-		for (int i = 0; i <= 10; i++)
-		{
+		if (i < rows)
 			cout << " " << endl;
-		}
-		for (int j = 0; j <= 40; j++)
-		{
+		if (i == rows)
 			cout << " ";
-		}
 	}
+	for (int j = 0; j <= column; j++)
+	{
+		cout << " ";
+	}
+}
+
+void STab()
+{
+	for (int i = 0; i <= 10; i++)
+	{
+		cout << " " << endl;
+	}
+	for (int j = 0; j <= 40; j++)
+	{
+		cout << " ";
+	}
+}
