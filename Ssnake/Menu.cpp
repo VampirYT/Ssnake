@@ -155,7 +155,7 @@ void Shop(Config& c, game& g,skins& s)
 						Tab(2, 4);
 						cout << "1.Yes(spend " << s.Price.at(index) << " money)";
 						Tab(2, 4);
-						cout << "1.No";
+						cout << "2.No";
 						while(true)
 						{
 							if (_kbhit())

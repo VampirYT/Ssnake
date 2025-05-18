@@ -25,8 +25,8 @@ void Console(Config& c,game& g)
 		}
 		else if (Command == L"SetMoney" || Command == L"Setmoney" || Command == L"setmoney")
 		{
-			cout << "Enter how much money you want set" << endl;
-			cin >> c.money;
+			wcout << "Enter how much money you want set" << endl;
+			wcin >> c.money;
 			WriteConfig(c, g);
 			cout << "Money set to " << c.money;
 		}
