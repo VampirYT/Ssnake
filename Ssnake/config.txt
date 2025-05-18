@@ -1,0 +1,5 @@
+Money=0
+Lose=0
+Score=0
+Wins=0
+UsesSkin=default

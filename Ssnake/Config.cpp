@@ -9,7 +9,7 @@ void ReadConfig(Config& c,skins& s, game& g)
 		/*Red();
 		cout << "FAILED OPEN CONFIG!\n";
 		cout << "ALL SAVE DATES LOST!";*/
-		WriteConfig(c,g);
+		FirstWriteConfig(c,g);
 	}
 	else
 	{
@@ -91,5 +91,24 @@ void WriteConfig(Config& c,game& g)
 				ConfigFile << "Skin" << i << "=" << c.Skins[i] << endl;
 			}
 		}
+	}
+}
+
+void FirstWriteConfig(Config& c,game& g)
+{
+	ofstream ConfigFile("config.txt");
+	if (!ConfigFile.is_open())
+	{
+		/*Red();
+		cout << "FAILED TO WRITE CONFIG!\n";*/
+	}
+	else
+	{
+		g.skin = "default";
+		ConfigFile << "Money=" << c.money << endl;
+		ConfigFile << "Lose=" << c.Lose << endl;
+		ConfigFile << "Score=" << c.score << endl;
+		ConfigFile << "Wins=" << c.Wins << endl;
+		ConfigFile << "UsesSkin=default" << endl;
 	}
 }
