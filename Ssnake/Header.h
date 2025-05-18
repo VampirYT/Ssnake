@@ -23,6 +23,7 @@ struct Config
 
 struct game
 {
+	int TempBalance = 0;
 	char move = 'n';
 	bool dead = false, boost = false, boosts = true;
 	int score = 0;
@@ -38,35 +39,37 @@ struct skins
 {
 	vector<string> Skins
 	{
-		"red", "blue", "skeleton" , "Ukraine"
+		"default","red", "blue", "skeleton" , "Ukraine"
 	};
 	vector<int> Price
 	{
-		100,200,300,500
+		0,100,200,300,500
 	};
-	vector<bool> AvaibleToBuy;
+	vector<bool> AvaibleToBuy{false};
 };
 
 void GameStart();
-void ReadConfig(Config& c,skins& s);
-void WriteConfig(Config& c);
+void ReadConfig(Config& c,skins& s, game& g);
+void WriteConfig(Config& c, game & g);
 void Menu();
 void Inventory(Config& c, game& g);
-void Statistic(Config& c, skins& s);
+void Statistic(Config& c, skins& s,game& g);
 void Language(Config& c);
 void Shop(Config& c, game& g,skins& s);
 void Game(game& g,Config& c);
 
 void Map(game& g,Config& c);
-void Move(char&,Config& c);
+void Move(char&,Config& c,game& g);
 
 void Yellow();
 void Red();
 void Blue();
 void LightGreen(); 
 void DarkGreen();
+void White();
+void Aqua();
 
-void Console(Config& c);
+void Console(Config& c,game& g);
 void Help();
 void CommandInfo(string text);
 

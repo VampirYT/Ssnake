@@ -1,6 +1,6 @@
 #include "Header.h"
 
-void ReadConfig(Config& c,skins& s)
+void ReadConfig(Config& c,skins& s, game& g)
 {
 	c.Skins.clear();
 	ifstream Config("config.txt");
@@ -9,7 +9,7 @@ void ReadConfig(Config& c,skins& s)
 		Red();
 		cout << "FAILED OPEN CONFIG!\n";
 		cout << "ALL SAVE DATES LOST!";
-		WriteConfig(c);
+		WriteConfig(c,g);
 	}
 	else
 	{
@@ -45,28 +45,30 @@ void ReadConfig(Config& c,skins& s)
 					Count = stoi(count);
 					c.Wins = Count;
 				}
+				else if (key == "UsesSkin")
+				{
+					g.skin = line.substr(pos + 1);
+				}
 				else if (key == ("Skin" + to_string(i)))
 				{
 					c.Skins.push_back(line.substr(pos + 1));
 					i++;
-					for(int i =0; i < s.Skins.size(); i++)
-					{
-						if (line.substr(pos + 1) == s.Skins.at(i))
-						{
-							s.AvaibleToBuy.push_back(false);
-						}
-						else
-						{
-							s.AvaibleToBuy.push_back(true);
-						}
-					}
 				}
 			}
 		}
+		s.AvaibleToBuy.clear();
+		for (const auto& skin : s.Skins)
+		{
+			if (find(c.Skins.begin(), c.Skins.end(), skin) != c.Skins.end() || skin == g.skin)
+				s.AvaibleToBuy.push_back(false);
+			else
+				s.AvaibleToBuy.push_back(true);
+		}
+		WriteConfig(c, g);
 	}
 }
 
-void WriteConfig(Config& c)
+void WriteConfig(Config& c,game& g)
 {
 	ofstream ConfigFile("config.txt");
 	if (!ConfigFile.is_open())
@@ -74,14 +76,20 @@ void WriteConfig(Config& c)
 		Red();
 		cout << "FAILED TO WRITE CONFIG!\n";
 	}
-
-	ConfigFile << "Money=" << c.money << endl;
-	ConfigFile << "Lose=" << c.Lose << endl;
-	ConfigFile << "Score=" << c.score << endl;
-	ConfigFile << "Wins=" << c.Wins << endl;
-
-	for (int i = 0; i < c.Skins.size(); ++i)
+	else
 	{
-		ConfigFile << "Skin" << i << "=" << c.Skins[i] << endl;
+		ConfigFile << "Money=" << c.money << endl;
+		ConfigFile << "Lose=" << c.Lose << endl;
+		ConfigFile << "Score=" << c.score << endl;
+		ConfigFile << "Wins=" << c.Wins << endl;
+		ConfigFile << "UsesSkin" << "=" << g.skin << endl;
+
+		if (!c.Skins.empty())
+		{
+			for (int i = 0; i < c.Skins.size(); ++i)
+			{
+				ConfigFile << "Skin" << i << "=" << c.Skins[i] << endl;
+			}
+		}
 	}
 }
