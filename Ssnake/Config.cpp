@@ -6,9 +6,9 @@ void ReadConfig(Config& c,skins& s, game& g)
 	ifstream Config("config.txt");
 	if (!Config.is_open())
 	{
-		Red();
+		/*Red();
 		cout << "FAILED OPEN CONFIG!\n";
-		cout << "ALL SAVE DATES LOST!";
+		cout << "ALL SAVE DATES LOST!";*/
 		WriteConfig(c,g);
 	}
 	else
@@ -73,8 +73,8 @@ void WriteConfig(Config& c,game& g)
 	ofstream ConfigFile("config.txt");
 	if (!ConfigFile.is_open())
 	{
-		Red();
-		cout << "FAILED TO WRITE CONFIG!\n";
+		/*Red();
+		cout << "FAILED TO WRITE CONFIG!\n";*/
 	}
 	else
 	{

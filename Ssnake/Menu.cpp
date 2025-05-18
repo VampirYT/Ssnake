@@ -120,19 +120,6 @@ void Shop(Config& c, game& g,skins& s)
 	cout << "Shop: ";
 	Tab(2, 4);
 	cout << "Ur balance: " << c.money;
-	cout << endl;
-	for (int i = 0; i < s.AvaibleToBuy.size(); i++)
-	{
-		if (s.AvaibleToBuy.at(i))
-		{
-			cout << " true ";
-		}
-		else
-		{
-			cout << " false ";
-		}
-	}
-	cout << endl;
 	int index = 1;
 	for(int i=0; i < s.Skins.size(); i++)
 	{

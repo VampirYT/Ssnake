@@ -1,7 +1,0 @@
-Money=128
-Lose=3
-Score=7
-Wins=9
-UsesSkin=Ukraine
-Skin0=skeleton
-Skin1=default
