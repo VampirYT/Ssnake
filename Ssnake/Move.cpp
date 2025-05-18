@@ -1,6 +1,6 @@
 #include "Header.h"
 
-void Move(char& move,Config& c)
+void Move(char& move,Config& c,game& g)
 {
     _setmode(_fileno(stdin), _O_U16TEXT);
 	int Time = 0;
@@ -32,7 +32,20 @@ void Move(char& move,Config& c)
             else if (ch == L'`')
             {
                 system("cls");
-                Console(c);
+                Console(c,g);
+                break;
+            }
+            else if (ch == VK_ESCAPE)
+            {
+                system("cls");
+                Blue();
+                cout << "Ur score - " << g.score;
+                Sleep(3000);
+                system("cls");
+                c.money += g.TempBalance;
+                g.TempBalance = 0;
+                WriteConfig(c, g);
+                Menu();
                 break;
             }
 		}

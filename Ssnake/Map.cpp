@@ -2,6 +2,8 @@
 
 void Map(game& g,Config& c)
 {
+	LightGreen();
+	cout << "Your balance: " << c.money <<"(+" << g.TempBalance << ")" << endl;
 	if (g.kd >= kdb)
 	{
 		g.boost = false;
@@ -70,6 +72,7 @@ void Map(game& g,Config& c)
 	if (g.xh == g.xe && g.yh == g.ye)
 	{
 		g.score++;
+		g.TempBalance += 2;
 		g.xst.push_back(g.xh);
 		g.yst.push_back(g.yh);
 		g.xe = rand() % (x - 2 * 4) + 4;
@@ -79,6 +82,7 @@ void Map(game& g,Config& c)
 	{
 		g.xb = rand() % (x - 2 * 4) + 4;
 		g.yb = rand() % (x - 2 * 4) + 4;
+		g.TempBalance += 10;
 		g.boost = true;
 		g.boosts = false;
 	}
@@ -89,7 +93,26 @@ void Map(game& g,Config& c)
 			bool printed = false;
 			if (j == g.xh && i == g.yh)
 			{
-				LightGreen();
+				if(g.skin == "default")
+				{
+					LightGreen();
+				}
+				else if (g.skin == "red")
+				{
+					Red();
+				}
+				else if (g.skin == "blue")
+				{
+					Blue();
+				}
+				else if (g.skin == "skeleton")
+				{
+					White();
+				}
+				else if (g.skin == "Ukraine")
+				{
+					Aqua();
+				}
 				cout << "8";
 				printed = true;
 			}
@@ -116,12 +139,57 @@ void Map(game& g,Config& c)
 				{
 					if(k== g.xst.size()-1)
 					{
-						Red();
+						if(g.skin == "default")
+						{
+							Red();
+						}
+						else if (g.skin == "red")
+						{
+							Red();
+						}
+						else if (g.skin == "blue")
+						{
+							Blue();
+						}
+						else if (g.skin == "skeleton")
+						{
+							White();
+						}
+						else if (g.skin == "Ukraine")
+						{
+							Yellow();
+						}
 						cout << "0";
 					}
 					else if(k< g.xst.size())
 					{
-						DarkGreen();
+						if (g.skin == "default")
+						{
+							DarkGreen();
+						}
+						else if (g.skin == "red")
+						{
+							Red();
+						}
+						else if (g.skin == "blue")
+						{
+							Blue();
+						}
+						else if (g.skin == "skeleton")
+						{
+							White();
+						}
+						else if (g.skin == "Ukraine")
+						{
+							if (k <= (g.xst.size() / 2))
+							{
+								Blue();
+							}
+							else if (k > (g.xst.size() / 2))
+							{
+								Yellow();
+							}
+						}
 						cout << "0";
 					}
 					
@@ -145,5 +213,5 @@ void Map(game& g,Config& c)
 		cout << endl;
 	}
 	g.kd += 160;
-	Move(g.move,c);
+	Move(g.move,c,g);
 }

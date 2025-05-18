@@ -19,7 +19,7 @@ void Menu()
 	cout << "5. Statistic";
 	Tab(2, 4);
 	cout << "ESC. Exit";
-	ReadConfig(c,s);
+	ReadConfig(c,s,g);
 	while (true)
 	{
 		if (_kbhit())
@@ -51,7 +51,7 @@ void Menu()
 			else if (ch == '5')
 			{
 				system("cls");
-				Statistic(c,s);
+				Statistic(c,s,g);
 				break;
 			}
 			else if (ch == VK_ESCAPE)
@@ -63,7 +63,7 @@ void Menu()
 			else if (ch == '`')
 			{
 				system("cls");
-				Console(c);
+				Console(c,g);
 				break;
 			}
 			else
@@ -81,6 +81,8 @@ void Inventory(Config&c, game& g)
 	int index = 1;
 	Tab(0, 6);
 	cout << "Inventory: ";
+	Tab(2, 4);
+	cout << "Equipped - " << g.skin;
 	for (int i = 0; i < c.Skins.size(); i++)
 	{
 		Tab(2, 4);
@@ -101,7 +103,12 @@ void Inventory(Config&c, game& g)
 			}
 			else if (key >= 1 && key <= c.Skins.size())
 			{
-
+				c.Skins.push_back(g.skin);
+				g.skin = c.Skins.at(index);
+				c.Skins.erase(c.Skins.begin() + index);
+				WriteConfig(c, g);
+				system("cls");
+				Inventory(c, g);
 			}
 		}
 	}
@@ -113,6 +120,19 @@ void Shop(Config& c, game& g,skins& s)
 	cout << "Shop: ";
 	Tab(2, 4);
 	cout << "Ur balance: " << c.money;
+	cout << endl;
+	for (int i = 0; i < s.AvaibleToBuy.size(); i++)
+	{
+		if (s.AvaibleToBuy.at(i))
+		{
+			cout << " true ";
+		}
+		else
+		{
+			cout << " false ";
+		}
+	}
+	cout << endl;
 	int index = 1;
 	for(int i=0; i < s.Skins.size(); i++)
 	{
@@ -159,7 +179,7 @@ void Shop(Config& c, game& g,skins& s)
 									c.money -= s.Price.at(index);
 									c.Skins.push_back(s.Skins.at(index));
 									s.AvaibleToBuy.at(index) = false;
-									WriteConfig(c);
+									WriteConfig(c,g);
 									system("cls");
 									cout << "You spend " << s.Price.at(index) << " money for " << s.Skins.at(index);
 									Sleep(3000);
@@ -206,9 +226,9 @@ void Shop(Config& c, game& g,skins& s)
 	}
 }
 
-void Statistic(Config& c,skins& s)
+void Statistic(Config& c,skins& s,game& g)
 {
-	ReadConfig(c, s);
+	ReadConfig(c, s,g);
 	cout << "Wins -" << c.Wins << endl;
 	cout << "Lose -" << c.Lose << endl;
 	cout << "Money -" << c.money << endl;

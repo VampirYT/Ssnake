@@ -1,36 +1,36 @@
 #include "Header.h"
 
-void Console(Config& c)
+void Console(Config& c,game& g)
 {
 	LightGreen();
-	cout << "It's a developer console here you can print some admin command if you want return to game press \"ESC\""
+	wcout << "It's a developer console here you can print some admin command if you want return to game press \"ESC\""
 		<< endl << "For take all commands list write \"help\"" << endl;
-	string Command;
+	wstring Command;
 	while (true)
 	{
-		cout << "BlackJack/User:";
-		getline(cin,Command);
-		if (Command == "exit" || Command == "Exit")
+		wcout << "BlackJack/User:";
+		getline(wcin,Command);
+		if (Command == L"exit" || Command == L"Exit")
 		{
 			system("cls");
 			exit(0);
 		}
-		else if (Command == "clear" || Command == "Clear" || Command == "cls")
+		else if (Command == L"clear" || Command == L"Clear" || Command == L"cls")
 		{
 			system("cls");
 		}
-		else if (Command == "help" || Command == "Help")
+		else if (Command == L"help" || Command == L"Help")
 		{
 			Help();
 		}
-		else if (Command == "SetMoney" || Command == "Setmoney" || Command == "setmoney")
+		else if (Command == L"SetMoney" || Command == L"Setmoney" || Command == L"setmoney")
 		{
 			cout << "Enter how much money you want set" << endl;
 			cin >> c.money;
-			WriteConfig(c);
+			WriteConfig(c, g);
 			cout << "Money set to " << c.money;
 		}
-		else if (Command == "List" || Command == "list")
+		else if (Command == L"List" || Command == L"list")
 		{
 			int index = 1;
 			cout << "List: " << endl;
@@ -46,7 +46,7 @@ void Console(Config& c)
 				index++;
 			}
 		}
-		else if (Command == "Delete skin" || Command == "delete skin")
+		else if (Command == L"Delete skin" || Command == L"delete skin")
 		{
 			int index;
 			cout << "Enter skin position" << endl;
@@ -57,12 +57,12 @@ void Console(Config& c)
 				cout << c.Skins.at(index) << " deleted";
 				c.Skins.erase(c.Skins.begin() + index);
 			}
-			else 
+			else
 			{
 				cout << "Error: invalid index" << endl;
 			}
 		}
-		else if (Command == "Start" || Command == "start")
+		else if (Command == L"Start" || Command == L"start")
 		{
 			int j = 5;
 			for (int i = 0; i < 5; i++)
@@ -76,12 +76,12 @@ void Console(Config& c)
 			system("cls");
 			GameStart();
 		}
-		else if (Command == "GitHub" || Command == "github")
+		else if (Command == L"GitHub" || Command == L"github")
 			cout << "Avtor GitHub - https://github.com/VampirYT/BlackJack-CPP-" << endl;
 		else
 		{
 			Red();
-			cout << "\"" << Command << "\"" << " unknown command use \"help\" for show command list" << endl;
+			wcout << "\"" << Command << "\"" << " unknown command use \"help\" for show command list" << endl;
 			LightGreen();
 		}
 	}

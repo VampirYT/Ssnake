@@ -9,7 +9,12 @@ void Game(game& g, Config& c)
 	}
 	Blue();
 	cout << "Ur score - " << g.score;
-	exit(0);
+	Sleep(3000);
+	system("cls");
+	c.money += g.TempBalance;
+	g.TempBalance = 0;
+	WriteConfig(c, g);
+	Menu();
 }
 
 void GameStart()
