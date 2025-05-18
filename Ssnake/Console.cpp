@@ -61,6 +61,7 @@ void Console(Config& c,game& g)
 			{
 				cout << "Error: invalid index" << endl;
 			}
+			WriteConfig(c, g);
 		}
 		else if (Command == L"Start" || Command == L"start")
 		{
