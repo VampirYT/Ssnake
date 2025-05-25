@@ -17,7 +17,7 @@ const int x = 30, y = 20,kdbs = 60000,kdb = 10000;
 struct Config
 {
 	int Wins = 0, Lose = 0, score = 0, money = 0;
-	string language;
+	string language = "en";
 	vector<string> Skins;
 };
 
