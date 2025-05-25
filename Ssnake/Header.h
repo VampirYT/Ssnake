@@ -55,7 +55,7 @@ void FirstWriteConfig(Config& c, game& g);
 void Menu();
 void Inventory(Config& c, game& g);
 void Statistic(Config& c, skins& s,game& g);
-void Language(Config& c);
+void Language(Config& c,game& g);
 void Shop(Config& c, game& g,skins& s);
 void Game(game& g,Config& c);
 
