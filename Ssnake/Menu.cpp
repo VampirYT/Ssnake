@@ -26,19 +26,19 @@ void Menu()
 	else if (c.language == "ua")
 	{
 		Tab(0, 6);
-		cout << "����: ";
+		cout << "Иеню: ";
 		Tab(2, 4);
-		cout << "1. �����";
+		cout << "1. Грати";
 		Tab(2, 4);
-		cout << "2. �������";
+		cout << "2. Магазин";
 		Tab(2, 4);
-		cout << "3. ��������";
+		cout << "3. Інвентар";
 		Tab(2, 4);
-		cout << "4. ������� ����";
+		cout << "4. Вибір мови";
 		Tab(2, 4);
-		cout << "5. ����������";
+		cout << "5. Статистика";
 		Tab(2, 4);
-		cout << "ESC. �����";
+		cout << "ESC. Вихід";
 	}
 	ReadConfig(c,s,g);
 	while (true)
@@ -110,9 +110,9 @@ void Inventory(Config&c, game& g)
 	else if (c.language == "ua")
 	{
 		Tab(0, 6);
-		cout << "��������: ";
+		cout << "Інвентар: ";
 		Tab(2, 4);
-		cout << "��������������� - " << g.skin;
+		cout << "Використовується - " << g.skin;
 	}
 	for (int i = 0; i < c.Skins.size(); i++)
 	{
@@ -152,15 +152,15 @@ void Shop(Config& c, game& g,skins& s)
 		Tab(0, 6);
 		cout << "Shop: ";
 		Tab(2, 4);
-		cout << "Ur balance: " << c.money;
+		cout << "Your balance: " << c.money;
 		cout << endl;
 	}
 	else if (c.language == "ua")
 	{
 		Tab(0, 6);
-		cout << "�������: ";
+		cout << "Магазин: ";
 		Tab(2, 4);
-		cout << "��� ������: " << c.money;
+		cout << "Ваш баланс: " << c.money;
 		cout << endl;
 	}
 	for (int i = 0; i < s.AvaibleToBuy.size(); i++)
@@ -173,7 +173,7 @@ void Shop(Config& c, game& g,skins& s)
 			}
 			else if(c.language == "ua")
 			{
-				cout << " ��� ";
+				cout << " так ";
 			}
 		}
 		else if (!s.AvaibleToBuy.at(i))
@@ -184,7 +184,7 @@ void Shop(Config& c, game& g,skins& s)
 			}
 			else if(c.language == "ua")
 			{
-				cout << " �� ";
+				cout << " ні ";
 			}
 		}
 	}
@@ -201,7 +201,7 @@ void Shop(Config& c, game& g,skins& s)
 			}
 			else if(c.language == "ua")
 			{
-				cout << index << "." << s.Skins.at(i) << " ������� - " << s.Price.at(i);
+				cout << index << "." << s.Skins.at(i) << " ціна - " << s.Price.at(i);
 			}
 		}
 		else if (!s.AvaibleToBuy.at(i))
@@ -212,7 +212,7 @@ void Shop(Config& c, game& g,skins& s)
 			}
 			else if(c.language == "ua")
 			{
-				cout << index << "." << s.Skins.at(i) << " �� ��� ���� ��� ���";
+				cout << index << "." << s.Skins.at(i) << " у вас вже є цей скін";
 			}
 		}
 		index++;
@@ -224,7 +224,7 @@ void Shop(Config& c, game& g,skins& s)
 	}
 	else if (c.language == "ua")
 	{
-		cout << "ESC. �����";
+		cout << "ESC. Вихід";
 	}
 	while (true)
 	{
@@ -252,11 +252,11 @@ void Shop(Config& c, game& g,skins& s)
 						else if (c.language == "ua")
 						{
 							Tab(2, 4);
-							cout << "�� �������� �� ������ �������� ��� ��� " << s.Skins.at(index) << " �� " << s.Price.at(index) << "?";
+							cout << "Ви впевнені що хочете придбати цей скін" << s.Skins.at(index) << " за " << s.Price.at(index) << "?";
 							Tab(2, 4);
-							cout << "1.���(��������� " << s.Price.at(index) << " ������)";
+							cout << "1.Так(Витратити " << s.Price.at(index) << " грошей)";
 							Tab(2, 4);
-							cout << "1.ͳ";
+							cout << "1.Ні";
 						}
 						while(true)
 						{
@@ -276,7 +276,7 @@ void Shop(Config& c, game& g,skins& s)
 									}
 									else if(c.language == "ua")
 									{
-										cout << "�� ��������� " << s.Price.at(index) << " ������ �� " << s.Skins.at(index);
+										cout << "Ви витратили " << s.Price.at(index) << " грошей за " << s.Skins.at(index);
 									}
 									Sleep(3000);
 									system("cls");
@@ -292,7 +292,7 @@ void Shop(Config& c, game& g,skins& s)
 									}
 									else if(c.language == "ua")
 									{
-										cout << "��� ���� ��������� �� ��������";
+										cout << "Вас поверне до меню магазина";
 									}
 									Sleep(3000);
 									system("cls");
@@ -311,7 +311,7 @@ void Shop(Config& c, game& g,skins& s)
 						}
 						else if(c.language == "ua")
 						{
-							cout << "� ��� �� ����� ������ ��� ���� �������";
+							cout << "У вас недостатньо грошей для покупки";
 						}
 						Sleep(3000);
 						system("cls");
@@ -327,7 +327,7 @@ void Shop(Config& c, game& g,skins& s)
 					}
 					else if(c.language == "ua")
 					{
-						cout << "��� �� ������� ��������";
+						cout << "Скін не доступний для придбання";
 					}
 					Sleep(3000);
 					system("cls");
