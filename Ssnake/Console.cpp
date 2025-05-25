@@ -8,7 +8,7 @@ void Console(Config& c,game& g)
 	wstring Command;
 	while (true)
 	{
-		wcout << "BlackJack/User:";
+		wcout << "Ssnake/User:";
 		getline(wcin,Command);
 		if (Command == L"exit" || Command == L"Exit")
 		{

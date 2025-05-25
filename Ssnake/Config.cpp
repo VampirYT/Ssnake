@@ -105,6 +105,7 @@ void FirstWriteConfig(Config& c,game& g)
 	else
 	{
 		g.skin = "default";
+		ConfigFile << "Language=" << c.language << endl;
 		ConfigFile << "Money=" << c.money << endl;
 		ConfigFile << "Lose=" << c.Lose << endl;
 		ConfigFile << "Score=" << c.score << endl;

@@ -3,7 +3,14 @@
 void Map(game& g,Config& c)
 {
 	LightGreen();
-	cout << "Your balance: " << c.money <<"(+" << g.TempBalance << ")" << endl;
+	if(c.language == "en")
+	{
+		cout << "Your balance: " << c.money << "(+" << g.TempBalance << ")" << endl;
+	}
+	else if(c.language == "ua")
+	{
+		cout << "Ваш баланс: " << c.money << "(+" << g.TempBalance << ")" << endl;
+	}
 	if (g.kd >= kdb)
 	{
 		g.boost = false;
