@@ -26,19 +26,19 @@ void Menu()
 	else if (c.language == "ua")
 	{
 		Tab(0, 6);
-		cout << "Меню: ";
+		cout << "пїЅпїЅпїЅпїЅ: ";
 		Tab(2, 4);
-		cout << "1. Грати";
+		cout << "1. пїЅпїЅпїЅпїЅпїЅ";
 		Tab(2, 4);
-		cout << "2. Магазие";
+		cout << "2. пїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
 		Tab(2, 4);
-		cout << "3. Інвентар";
+		cout << "3. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
 		Tab(2, 4);
-		cout << "4. Вибрати мову";
+		cout << "4. пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ";
 		Tab(2, 4);
-		cout << "5. Статистика";
+		cout << "5. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
 		Tab(2, 4);
-		cout << "ESC. Вийти";
+		cout << "ESC. пїЅпїЅпїЅпїЅпїЅ";
 	}
 	ReadConfig(c,s,g);
 	while (true)
@@ -110,9 +110,9 @@ void Inventory(Config&c, game& g)
 	else if (c.language == "ua")
 	{
 		Tab(0, 6);
-		cout << "Інвентар: ";
+		cout << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: ";
 		Tab(2, 4);
-		cout << "Використовується - " << g.skin;
+		cout << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - " << g.skin;
 	}
 	for (int i = 0; i < c.Skins.size(); i++)
 	{
@@ -158,9 +158,9 @@ void Shop(Config& c, game& g,skins& s)
 	else if (c.language == "ua")
 	{
 		Tab(0, 6);
-		cout << "Магазин: ";
+		cout << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: ";
 		Tab(2, 4);
-		cout << "Ваш баланс: " << c.money;
+		cout << "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: " << c.money;
 		cout << endl;
 	}
 	for (int i = 0; i < s.AvaibleToBuy.size(); i++)
@@ -173,7 +173,7 @@ void Shop(Config& c, game& g,skins& s)
 			}
 			else if(c.language == "ua")
 			{
-				cout << " так ";
+				cout << " пїЅпїЅпїЅ ";
 			}
 		}
 		else if (!s.AvaibleToBuy.at(i))
@@ -184,7 +184,7 @@ void Shop(Config& c, game& g,skins& s)
 			}
 			else if(c.language == "ua")
 			{
-				cout << " ні ";
+				cout << " пїЅпїЅ ";
 			}
 		}
 	}
@@ -201,7 +201,7 @@ void Shop(Config& c, game& g,skins& s)
 			}
 			else if(c.language == "ua")
 			{
-				cout << index << "." << s.Skins.at(i) << " вартість - " << s.Price.at(i);
+				cout << index << "." << s.Skins.at(i) << " пїЅпїЅпїЅпїЅпїЅпїЅпїЅ - " << s.Price.at(i);
 			}
 		}
 		else if (!s.AvaibleToBuy.at(i))
@@ -212,7 +212,7 @@ void Shop(Config& c, game& g,skins& s)
 			}
 			else if(c.language == "ua")
 			{
-				cout << index << "." << s.Skins.at(i) << " ви вже маєте цей скін";
+				cout << index << "." << s.Skins.at(i) << " пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ";
 			}
 		}
 		index++;
@@ -224,7 +224,7 @@ void Shop(Config& c, game& g,skins& s)
 	}
 	else if (c.language == "ua")
 	{
-		cout << "ESC. Вийти";
+		cout << "ESC. пїЅпїЅпїЅпїЅпїЅ";
 	}
 	while (true)
 	{
@@ -252,9 +252,9 @@ void Shop(Config& c, game& g,skins& s)
 						else if (c.language == "ua")
 						{
 							Tab(2, 4);
-							cout << "Ви впевнені що хочете придбати цей скін " << s.Skins.at(index) << " за " << s.Price.at(index) << "?";
+							cout << "пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ " << s.Skins.at(index) << " пїЅпїЅ " << s.Price.at(index) << "?";
 							Tab(2, 4);
-							cout << "1.Так(витратити " << s.Price.at(index) << " грошей)";
+							cout << "1.пїЅпїЅпїЅ(пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ " << s.Price.at(index) << " пїЅпїЅпїЅпїЅпїЅпїЅ)";
 							Tab(2, 4);
 							cout << "1.Ні";
 						}
@@ -276,7 +276,7 @@ void Shop(Config& c, game& g,skins& s)
 									}
 									else if(c.language == "ua")
 									{
-										cout << "Ви витратили " << s.Price.at(index) << " грошей за " << s.Skins.at(index);
+										cout << "пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ " << s.Price.at(index) << " пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ " << s.Skins.at(index);
 									}
 									Sleep(3000);
 									system("cls");
@@ -292,7 +292,7 @@ void Shop(Config& c, game& g,skins& s)
 									}
 									else if(c.language == "ua")
 									{
-										cout << "Вас буде повернено до магазину";
+										cout << "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
 									}
 									Sleep(3000);
 									system("cls");
@@ -311,7 +311,7 @@ void Shop(Config& c, game& g,skins& s)
 						}
 						else if(c.language == "ua")
 						{
-							cout << "У вас не хватає грошей для цієї покупки";
+							cout << "пїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
 						}
 						Sleep(3000);
 						system("cls");
@@ -327,7 +327,7 @@ void Shop(Config& c, game& g,skins& s)
 					}
 					else if(c.language == "ua")
 					{
-						cout << "Скін не можливо придбати";
+						cout << "пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
 					}
 					Sleep(3000);
 					system("cls");
