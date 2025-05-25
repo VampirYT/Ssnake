@@ -51,6 +51,7 @@ struct skins
 void GameStart();
 void ReadConfig(Config& c,skins& s, game& g);
 void WriteConfig(Config& c, game & g);
+void FirstWriteConfig(Config& c, game& g);
 void Menu();
 void Inventory(Config& c, game& g);
 void Statistic(Config& c, skins& s,game& g);

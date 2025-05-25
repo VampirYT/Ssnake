@@ -21,7 +21,7 @@ void GameStart()
 {
 	Red();
 	STab();
-	cout << "Welcome to our game - Ssmake";
+	cout << "Welcome to our game - Ssnake";
 	STab();
 	Blue();
 	cout << "Avtor - Oleksandr Bardin" << endl;
