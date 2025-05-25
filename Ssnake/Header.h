@@ -17,7 +17,7 @@ const int x = 30, y = 20,kdbs = 60000,kdb = 10000;
 struct Config
 {
 	int Wins = 0, Lose = 0, score = 0, money = 0;
-	string language = "ua";
+	string language;
 	vector<string> Skins;
 };
 
@@ -54,7 +54,7 @@ void WriteConfig(Config& c, game & g);
 void Menu();
 void Inventory(Config& c, game& g);
 void Statistic(Config& c, skins& s,game& g);
-void Language(Config& c);
+void Language(Config& c,game& g);
 void Shop(Config& c, game& g,skins& s);
 void Game(game& g,Config& c);
 

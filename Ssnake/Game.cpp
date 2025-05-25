@@ -53,7 +53,7 @@ void GameStart()
 	}
 }
 
-void Language(Config& c)
+void Language(Config& c,game& g)
 {
 	Tab(10, 47);
 	cout << "Choose a language" << endl;
@@ -69,6 +69,7 @@ void Language(Config& c)
 			if (ch == '1')
 			{
 				c.language = "ua";
+				WriteConfig(c, g);
 				system("cls"); 
 				Menu();
 				break;
@@ -76,6 +77,7 @@ void Language(Config& c)
 			else if (ch == '2')
 			{
 				c.language = "en";
+				WriteConfig(c, g);
 				system("cls");
 				Menu();
 				break;

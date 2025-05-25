@@ -5,20 +5,41 @@ void Menu()
 	Config c;
 	game g;
 	skins s;
-	Tab(0, 6);
-	cout << "Menu: ";
-	Tab(2, 4);
-	cout << "1. Play";
-	Tab(2, 4);
-	cout << "2. Shop";
-	Tab(2, 4);
-	cout << "3. Inventory";
-	Tab(2, 4);
-	cout << "4. Language";
-	Tab(2, 4);
-	cout << "5. Statistic";
-	Tab(2, 4);
-	cout << "ESC. Exit";
+	ReadConfig(c, s, g);
+	if(c.language == "en")
+	{
+		Tab(0, 6);
+		cout << "Menu: ";
+		Tab(2, 4);
+		cout << "1. Play";
+		Tab(2, 4);
+		cout << "2. Shop";
+		Tab(2, 4);
+		cout << "3. Inventory";
+		Tab(2, 4);
+		cout << "4. Language";
+		Tab(2, 4);
+		cout << "5. Statistic";
+		Tab(2, 4);
+		cout << "ESC. Exit";
+	}
+	else if (c.language == "ua")
+	{
+		Tab(0, 6);
+		cout << "Меню: ";
+		Tab(2, 4);
+		cout << "1. Грати";
+		Tab(2, 4);
+		cout << "2. Магазие";
+		Tab(2, 4);
+		cout << "3. Інвентар";
+		Tab(2, 4);
+		cout << "4. Вибрати мову";
+		Tab(2, 4);
+		cout << "5. Статистика";
+		Tab(2, 4);
+		cout << "ESC. Вийти";
+	}
 	ReadConfig(c,s,g);
 	while (true)
 	{
@@ -45,7 +66,7 @@ void Menu()
 			else if (ch == '4')
 			{
 				system("cls");
-				Language(c);
+				Language(c,g);
 				break;
 			}
 			else if (ch == '5')
@@ -79,10 +100,20 @@ void Menu()
 void Inventory(Config&c, game& g)
 {
 	int index = 1;
-	Tab(0, 6);
-	cout << "Inventory: ";
-	Tab(2, 4);
-	cout << "Equipped - " << g.skin;
+	if(c.language == "en")
+	{
+		Tab(0, 6);
+		cout << "Inventory: ";
+		Tab(2, 4);
+		cout << "Equipped - " << g.skin;
+	}
+	else if (c.language == "ua")
+	{
+		Tab(0, 6);
+		cout << "Інвентар: ";
+		Tab(2, 4);
+		cout << "Використовується - " << g.skin;
+	}
 	for (int i = 0; i < c.Skins.size(); i++)
 	{
 		Tab(2, 4);
@@ -116,20 +147,45 @@ void Inventory(Config&c, game& g)
 
 void Shop(Config& c, game& g,skins& s)
 {
-	Tab(0, 6);
-	cout << "Shop: ";
-	Tab(2, 4);
-	cout << "Ur balance: " << c.money;
-	cout << endl;
+	if(c.language == "en")
+	{
+		Tab(0, 6);
+		cout << "Shop: ";
+		Tab(2, 4);
+		cout << "Ur balance: " << c.money;
+		cout << endl;
+	}
+	else if (c.language == "ua")
+	{
+		Tab(0, 6);
+		cout << "Магазин: ";
+		Tab(2, 4);
+		cout << "Ваш баланс: " << c.money;
+		cout << endl;
+	}
 	for (int i = 0; i < s.AvaibleToBuy.size(); i++)
 	{
 		if (s.AvaibleToBuy.at(i))
 		{
-			cout << " true ";
+			if(c.language == "en")
+			{
+				cout << " true ";
+			}
+			else if(c.language == "ua")
+			{
+				cout << " так ";
+			}
 		}
-		else
+		else if (!s.AvaibleToBuy.at(i))
 		{
-			cout << " false ";
+			if(c.language == "en")
+			{
+				cout << " false ";
+			}
+			else if(c.language == "ua")
+			{
+				cout << " ні ";
+			}
 		}
 	}
 	cout << endl;
@@ -139,16 +195,37 @@ void Shop(Config& c, game& g,skins& s)
 		Tab(2, 4);
 		if(s.AvaibleToBuy.at(i))
 		{
-			cout << index << "." << s.Skins.at(i) << " price - " << s.Price.at(i);
+			if(c.language == "en")
+			{
+				cout << index << "." << s.Skins.at(i) << " price - " << s.Price.at(i);
+			}
+			else if(c.language == "ua")
+			{
+				cout << index << "." << s.Skins.at(i) << " вартість - " << s.Price.at(i);
+			}
 		}
-		else
+		else if (!s.AvaibleToBuy.at(i))
 		{
-			cout << index << "." << s.Skins.at(i) << " you already have this skin";
+			if(c.language == "en")
+			{
+				cout << index << "." << s.Skins.at(i) << " you already have this skin";
+			}
+			else if(c.language == "ua")
+			{
+				cout << index << "." << s.Skins.at(i) << " ви вже маєте цей скін";
+			}
 		}
 		index++;
 	}
 	Tab(2, 4);
-	cout << "ESC. Exit";
+	if (c.language == "en")
+	{
+		cout << "ESC. Exit";
+	}
+	else if (c.language == "ua")
+	{
+		cout << "ESC. Вийти";
+	}
 	while (true)
 	{
 		if (_kbhit())
@@ -163,12 +240,24 @@ void Shop(Config& c, game& g,skins& s)
 					if (c.money >= s.Price.at(index))
 					{
 						system("cls");
-						Tab(2, 4);
-						cout << "Are yous sure to buy " << s.Skins.at(index) << " for " << s.Price.at(index) << "?";
-						Tab(2, 4);
-						cout << "1.Yes(spend " << s.Price.at(index) << " money)";
-						Tab(2, 4);
-						cout << "1.No";
+						if(c.language == "en")
+						{
+							Tab(2, 4);
+							cout << "Are yous sure to buy " << s.Skins.at(index) << " for " << s.Price.at(index) << "?";
+							Tab(2, 4);
+							cout << "1.Yes(spend " << s.Price.at(index) << " money)";
+							Tab(2, 4);
+							cout << "1.No";
+						}
+						else if (c.language == "ua")
+						{
+							Tab(2, 4);
+							cout << "Ви впевнені що хочете придбати цей скін " << s.Skins.at(index) << " за " << s.Price.at(index) << "?";
+							Tab(2, 4);
+							cout << "1.Так(витратити " << s.Price.at(index) << " грошей)";
+							Tab(2, 4);
+							cout << "1.Ні";
+						}
 						while(true)
 						{
 							if (_kbhit())
@@ -181,7 +270,14 @@ void Shop(Config& c, game& g,skins& s)
 									s.AvaibleToBuy.at(index) = false;
 									WriteConfig(c,g);
 									system("cls");
-									cout << "You spend " << s.Price.at(index) << " money for " << s.Skins.at(index);
+									if(c.language == "en")
+									{
+										cout << "You spend " << s.Price.at(index) << " money for " << s.Skins.at(index);
+									}
+									else if(c.language == "ua")
+									{
+										cout << "Ви витратили " << s.Price.at(index) << " грошей за " << s.Skins.at(index);
+									}
 									Sleep(3000);
 									system("cls");
 									Shop(c, g, s);
@@ -190,7 +286,14 @@ void Shop(Config& c, game& g,skins& s)
 								{
 									system("cls");
 									Tab(2, 4);
-									cout << "You turn back to shop";
+									if(c.language == "en")
+									{
+										cout << "You turn back to shop";
+									}
+									else if(c.language == "ua")
+									{
+										cout << "Вас буде повернено до магазину";
+									}
 									Sleep(3000);
 									system("cls");
 									Shop(c, g, s);
@@ -202,7 +305,14 @@ void Shop(Config& c, game& g,skins& s)
 					{
 						system("cls");
 						Tab(2, 4);
-						cout << "You don't have money for this purchase";
+						if(c.language == "en")
+						{
+							cout << "You don't have money for this purchase";
+						}
+						else if(c.language == "ua")
+						{
+							cout << "У вас не хватає грошей для цієї покупки";
+						}
 						Sleep(3000);
 						system("cls");
 						Shop(c, g, s);
@@ -211,7 +321,14 @@ void Shop(Config& c, game& g,skins& s)
 				else
 				{
 					Tab(2, 4);
-					cout << "Skin not avaible to buy";
+					if(c.language == "en")
+					{
+						cout << "Skin not avaible to buy";
+					}
+					else if(c.language == "ua")
+					{
+						cout << "Скін не можливо придбати";
+					}
 					Sleep(3000);
 					system("cls");
 					Shop(c, g, s);

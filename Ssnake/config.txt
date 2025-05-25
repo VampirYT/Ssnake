@@ -1,3 +1,4 @@
+Language=en
 Money=128
 Lose=3
 Score=7

@@ -33,6 +33,10 @@ void ReadConfig(Config& c,skins& s, game& g)
 					Count = stoi(count);
 					c.Lose = Count;
 				}
+				else if (key == "Language")
+				{
+					c.language = line.substr(pos+1);
+				}
 				else if (key == "Score")
 				{
 					count = line.substr(pos + 1);
@@ -78,6 +82,7 @@ void WriteConfig(Config& c,game& g)
 	}
 	else
 	{
+		ConfigFile << "Language=" << c.language << endl;
 		ConfigFile << "Money=" << c.money << endl;
 		ConfigFile << "Lose=" << c.Lose << endl;
 		ConfigFile << "Score=" << c.score << endl;
