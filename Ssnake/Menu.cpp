@@ -4,7 +4,7 @@ void Menu()
 {
 	Config c;
 	game g;
-	skins s;
+	skins s; 
 	ReadConfig(c, s, g);
 	if(c.language == "en")
 	{
@@ -346,12 +346,24 @@ void Shop(Config& c, game& g,skins& s)
 void Statistic(Config& c,skins& s,game& g)
 {
 	ReadConfig(c, s,g);
-	cout << "Wins -" << c.Wins << endl;
-	cout << "Lose -" << c.Lose << endl;
-	cout << "Money -" << c.money << endl;
-	cout << "Score -" << c.score << endl;
-	cout << "Skincount - " << c.Skins.size() << endl;
-	cout << "ESC.Exit" << endl;
+	if(c.language == "en")
+	{
+		cout << "Wins -" << c.Wins << endl;
+		cout << "Lose -" << c.Lose << endl;
+		cout << "Money -" << c.money << endl;
+		cout << "Score -" << c.score << endl;
+		cout << "Skincount - " << c.Skins.size() << endl;
+		cout << "ESC.Exit" << endl;
+	}
+	else if(c.language == "ua")
+	{
+		cout << "Перемоги -" << c.Wins << endl;
+		cout << "Поразки -" << c.Lose << endl;
+		cout << "Гроші -" << c.money << endl;
+		cout << "Очки -" << c.score << endl;
+		cout << "Кількість скінів - " << c.Skins.size() << endl;
+		cout << "ESC.Вихід" << endl;
+	}
 	while (true)
 	{
 		if (_kbhit())

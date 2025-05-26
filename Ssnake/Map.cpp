@@ -2,6 +2,7 @@
 
 void Map(game& g,Config& c)
 {
+	SetConsoleOutputCP(1251);
 	LightGreen();
 	if(c.language == "en")
 	{

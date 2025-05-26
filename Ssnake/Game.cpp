@@ -8,7 +8,14 @@ void Game(game& g, Config& c)
 		system("cls");
 	}
 	Blue();
-	cout << "Ur score - " << g.score;
+	if(c.language == "en")
+	{
+		cout << "Ur score - " << g.score;
+	}
+	else if (c.language == "ua")
+	{
+		cout << "Ваші очки - " << g.score;
+	}
 	Sleep(3000);
 	system("cls");
 	c.money += g.TempBalance;

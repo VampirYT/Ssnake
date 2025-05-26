@@ -2,7 +2,7 @@
 
 void Move(char& move,Config& c,game& g)
 {
-    _setmode(_fileno(stdin), _O_U16TEXT);
+    SetConsoleOutputCP(65001);
 	int Time = 0;
 	while (Time < 16)
 	{
