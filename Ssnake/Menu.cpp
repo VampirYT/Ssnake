@@ -163,32 +163,6 @@ void Shop(Config& c, game& g,skins& s)
 		cout << "Ваш баланс: " << c.money;
 		cout << endl;
 	}
-	for (int i = 0; i < s.AvaibleToBuy.size(); i++)
-	{
-		if (s.AvaibleToBuy.at(i))
-		{
-			if(c.language == "en")
-			{
-				cout << " true ";
-			}
-			else if(c.language == "ua")
-			{
-				cout << " так ";
-			}
-		}
-		else if (!s.AvaibleToBuy.at(i))
-		{
-			if(c.language == "en")
-			{
-				cout << " false ";
-			}
-			else if(c.language == "ua")
-			{
-				cout << " ні ";
-			}
-		}
-	}
-	cout << endl;
 	int index = 1;
 	for(int i=0; i < s.Skins.size(); i++)
 	{

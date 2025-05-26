@@ -8,6 +8,7 @@ void Game(game& g, Config& c)
 		system("cls");
 	}
 	Blue();
+	SetConsoleOutputCP(1251);
 	if(c.language == "en")
 	{
 		cout << "Ur score - " << g.score;
